@@ -1,0 +1,22 @@
+﻿@model CurrencyConverter.Models.CurrencyDropDown
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Currency Converter</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.Label("Value", "GBP")
+        @Html.TextBox("Value", null, new { style = "width: 100px; height: 25px;" })
+        <select id="currencies">
+            @foreach (var currencies in Model.CurrencyDropDownProperty)
+            {
+                <option value=@currencies.CurrencyValue>@currencies.CurrencyName</option>
+            }
+        </select>
+        <input type="button" id="convertBtn" value="Convert"/>
+        @Html.TextBox("ConvertedValue", "", new { @readonly = "readonly", style = "width: 100px; height: 25px;" })
+        <p id="Message" style="color:red;"></p>
+    }
+</div>
